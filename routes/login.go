@@ -16,7 +16,7 @@ func GLogin(w http.ResponseWriter, r *http.Request) {
 			ServeError(w, "Internal Server Error", http.StatusInternalServerError, "./templates/error.html")
 			return
 		}
-		t.ExecuteTemplate(w, "templates/login.html", nil)
+		t.Execute(w, "templates/login.html")
 	}
 }
 
