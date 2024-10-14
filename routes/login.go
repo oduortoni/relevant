@@ -8,18 +8,12 @@ import (
 	"r/db"
 )
 
-func GLogin(w http.ResponseWriter, r *http.Request, path string) {
-	// fetch the templates (GET request)
-	if r.URL.Path != "/login" {
-		ServeError(w, "Page Not Found", http.StatusNotFound, path)
-		return
-	}
-
+func GLogin(w http.ResponseWriter, r *http.Request) {
 	// execute the template
 	if r.Method == "GET" {
-		t, err := template.ParseFiles(path)
+		t, err := template.ParseFiles("./templates/login.html")
 		if err != nil {
-			ServeError(w, "Internal Server Error", http.StatusInternalServerError, path)
+			ServeError(w, "Internal Server Error", http.StatusInternalServerError, "./templates/error.html")
 			return
 		}
 		t.ExecuteTemplate(w, "templates/login.html", nil)
@@ -36,8 +30,8 @@ func PLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if user.Password == password {
-        http.Redirect(w, r, "/", http.StatusSeeOther)
-    } else {
-        fmt.Fprintf(w, "Invalid credentials")
-    }
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	} else {
+		fmt.Fprintf(w, "Invalid credentials")
+	}
 }
