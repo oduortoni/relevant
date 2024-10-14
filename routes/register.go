@@ -10,6 +10,13 @@ import (
 func PRegister(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
+
+	_, exists := db.CRetrieve(username)
+	if exists {
+		fmt.Fprintf(w, "A user with the name, %s, already exists\n", username)
+		return
+	}
+	
 	user := db.User{
 		Name: username,
 		Password: password,

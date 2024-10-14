@@ -5,3 +5,10 @@ $3
 joe
 $31
 {"Name":"Joe","Password":"joe"}
+*3
+$3
+set
+$4
+toni
+$35
+{"Name":"toni","Password":"antony"}

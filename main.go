@@ -8,6 +8,10 @@ import (
 )
 
 func main() {
+	// serve static files
+	http.HandleFunc("/static/", routes.Static)
+
+	// ordinary routes
 	http.HandleFunc("/", routes.Homepage)
 	http.HandleFunc("/gregister", routes.GRegister)
 	http.HandleFunc("/pregister", routes.PRegister)

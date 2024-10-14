@@ -16,7 +16,7 @@ func Init() {
 		return
 	}
 	defer db1.Close()
-	db1.CreateIndex("contract", "*", buntdb.IndexJSON("contract.id"))
+	db1.CreateIndex("contract", "*", buntdb.IndexJSON("user.id"))
 
 	db2, err := buntdb.Open(SESSIONDB)
 	if err != nil {
