@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session | Chat</title>
+</head>
+<body>
+    <h1>Welcome to the Chat Room</h1>
+    <p>You are currently logged in as: {{ .User.Username }}</p>
+    <form method="POST" action="/logout">
+        <input type="submit" value="Logout">
+    </form>
+    
+    <h2>Recent Messages:</h2>
+    {{ range $_, $msg :=.Messages }}
+        <p>{{ $msg.Username }}: {{ $msg.Message }}</p>
+    {{ end }}
+    
+    <form method="POST" action="/send">
+        <input type="text" name="message" id="message">
+        <input type="submit" value="Send">
+    </form>
+    <script src="/static/script/socket.js"></script>  <!-- Include this script in your HTML file -->  <!-- This script will establish a WebSocket connection and handle incoming messages -->  <!-- Make sure to replace "/ws" with the actual WebSocket endpoint of your server -->
+    
+</body>
+</html>
