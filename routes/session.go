@@ -13,6 +13,8 @@ func JoinSession(w http.ResponseWriter, r *http.Request) {
 	parts := strings.Split(r.URL.Path, "/")
 	sIdentifier := parts[len(parts)-1]
 	fmt.Fprintf(w, "<h1>About to join session: %s</h1>", sIdentifier)
+
+	//
 }
 
 func ListSessions(w http.ResponseWriter, r *http.Request) {
