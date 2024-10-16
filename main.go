@@ -10,9 +10,23 @@ import (
 )
 
 func main() {
+	_, err := os.Stat("./database")
+	if os.IsNotExist(err) {
+		err := os.Mkdir("database", 0755) // Use desired permissions, e.g., 0755
+		if err != nil {
+			fmt.Println("Error creating directory:", err)
+			return
+		}
+		fmt.Println("Database directory created.")
+	} else if err != nil {
+		fmt.Println("Error checking directory:", err)
+		return
+	} else {;}
+
 	if len(os.Args) == 2 {
 		initializeSessionDB()
 	}
+
 	// serve static files
 	http.HandleFunc("/static/", routes.Static)
 
