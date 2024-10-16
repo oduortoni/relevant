@@ -12,7 +12,7 @@ import (
 func main() {
 	_, err := os.Stat("./database")
 	if os.IsNotExist(err) {
-		err := os.Mkdir("database", 0755) // Use desired permissions, e.g., 0755
+		err := os.Mkdir("database", 0o755) // Use desired permissions, e.g., 0755
 		if err != nil {
 			fmt.Println("Error creating directory:", err)
 			return
@@ -21,7 +21,8 @@ func main() {
 	} else if err != nil {
 		fmt.Println("Error checking directory:", err)
 		return
-	} else {;}
+	} else {
+	}
 
 	if len(os.Args) == 2 {
 		initializeSessionDB()
@@ -68,54 +69,54 @@ func initializeSessionDB() {
 
 	msg101 := db.Message{
 		MemberId: 1,
-		Content: "Hello leute!",
+		Content:  "Hello leute!",
 	}
 	msg102 := db.Message{
 		MemberId: 2,
-		Content: "kool",
+		Content:  "kool",
 	}
 	msg103 := db.Message{
 		MemberId: 3,
-		Content: "Mhh!",
+		Content:  "Mhh!",
 	}
 	msg104 := db.Message{
 		MemberId: 1,
-		Content: "Sq, welcome to the chat. Today we will be talking about",
+		Content:  "Sq, welcome to the chat. Today we will be talking about",
 	}
 	s1 := db.Session{
 		Members:    []db.User{u1, u2, u2},
-		Messages: []db.Message{msg101, msg102, msg103, msg104},
+		Messages:   []db.Message{msg101, msg102, msg103, msg104},
 		OwnerId:    1,
 		Identifier: "session uno",
 	}
 
 	msg201 := db.Message{
 		MemberId: 1,
-		Content: "Can someone tell me what a diode is?",
+		Content:  "Can someone tell me what a diode is?",
 	}
 	msg202 := db.Message{
 		MemberId: 2,
-		Content: "What! I had the exact same question in mind",
+		Content:  "What! I had the exact same question in mind",
 	}
 	msg203 := db.Message{
 		MemberId: 3,
-		Content: "I could try to...",
+		Content:  "I could try to...",
 	}
 	msg204 := db.Message{
 		MemberId: 1,
-		Content: "Please do so rodri!",
+		Content:  "Please do so rodri!",
 	}
 	msg205 := db.Message{
 		MemberId: 3,
-		Content: "A diode is sort of a one way valve",
+		Content:  "A diode is sort of a one way valve",
 	}
 	msg206 := db.Message{
 		MemberId: 4,
-		Content: "Tah makes no sense, rodri. Dont assume everyone knows what a valve is.",
+		Content:  "Tah makes no sense, rodri. Dont assume everyone knows what a valve is.",
 	}
 	s2 := db.Session{
 		Members:    []db.User{u1, u2, u3, u4},
-		Messages: []db.Message{msg201, msg202, msg203, msg204, msg205, msg206},
+		Messages:   []db.Message{msg201, msg202, msg203, msg204, msg205, msg206},
 		OwnerId:    1,
 		Identifier: "session dos",
 	}

@@ -15,15 +15,17 @@
     </form>
     
     <h2>Recent Messages:</h2>
-    {{ range $msg := .Messages }}
-        {{ $msg.MemberId }} ": " {{ $msg.Content }}
-    {{ end }}
+    <div class="chatbox">
+        {{ range $msg := .Messages }}
+            {{ $msg.MemberId }} ": " {{ $msg.Content }}
+        {{ end }}
+    </div>
     
     <form method="POST" action="/send">
         <input type="text" name="message" id="message">
         <input type="submit" value="Send">
     </form>
-    <script src="/static/script/socket.js"></script>  <!-- Include this script in your HTML file -->  <!-- This script will establish a WebSocket connection and handle incoming messages -->  <!-- Make sure to replace "/ws" with the actual WebSocket endpoint of your server -->
+    <script src="/static/script/socket.js"></script>
     
 </body>
 </html>
