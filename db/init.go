@@ -7,7 +7,7 @@ import (
 )
 
 const USERSDB = "./database/users.db"
-const SESSIONDB = "./database/session.db"
+const SESSIONDB = "./database/sessions.db"
 
 func Init() {
 	db1, err := buntdb.Open(USERSDB)

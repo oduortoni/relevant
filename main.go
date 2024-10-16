@@ -3,11 +3,16 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
+	"r/db"
 	"r/routes"
 )
 
 func main() {
+	if len(os.Args) == 2 {
+		initializeSessionDB()
+	}
 	// serve static files
 	http.HandleFunc("/static/", routes.Static)
 
@@ -24,48 +29,48 @@ func main() {
 	http.ListenAndServe(":9000", nil)
 }
 
-// func main() {
-// 	u1 := db.User{
-// 		Name:     "uone",
-// 		Password: "uone",
-// 		Id:       1,
-// 	}
-// 	u2 := db.User{
-// 		Name:     "utwo",
-// 		Password: "utwo",
-// 		Id:       2,
-// 	}
-// 	u3 := db.User{
-// 		Name:     "utres",
-// 		Password: "utres",
-// 		Id:       3,
-// 	}
-// 	s1 := db.Session{
-// 		Members:    []db.User{u1, u2},
-// 		OwnerId:    1,
-// 		Identifier: 1,
-// 	}
+func initializeSessionDB() {
+	u1 := db.User{
+		Name:     "uone",
+		Password: "uone",
+		Id:       1,
+	}
+	u2 := db.User{
+		Name:     "utwo",
+		Password: "utwo",
+		Id:       2,
+	}
+	u3 := db.User{
+		Name:     "utres",
+		Password: "utres",
+		Id:       3,
+	}
+	s1 := db.Session{
+		Members:    []db.User{u1, u2},
+		OwnerId:    1,
+		Identifier: "session uno",
+	}
 
-// 	s2 := db.Session{
-// 		Members:    []db.User{u1, u2, u3},
-// 		OwnerId:    1,
-// 		Identifier: 1,
-// 	}
+	s2 := db.Session{
+		Members:    []db.User{u1, u2, u3},
+		OwnerId:    1,
+		Identifier: "session dos",
+	}
 
-// 	db.SessSave(u1.Name, s1)
-// 	db.SessSave(u2.Name, s2)
+	db.SessSave(u1.Name, s1)
+	db.SessSave(u2.Name, s2)
 
-// 	s, ok := db.SessRetrieve(u1.Name)
-// 	if !ok {
-// 		fmt.Println("No such session")
-// 	} else {
-// 		fmt.Println(s)
-// 	}
+	s, ok := db.SessRetrieve(u1.Name)
+	if !ok {
+		fmt.Println("No such session")
+	} else {
+		fmt.Println(s)
+	}
 
-// 	sessions, ok := db.SessRetrieve(u1.Name)
-// 	if !ok {
-// 		fmt.Println("No such session")
-// 	} else {
-// 		fmt.Println(sessions)
-// 	}
-// }
+	sessions, ok := db.SessRetrieve(u1.Name)
+	if !ok {
+		fmt.Println("No such session")
+	} else {
+		fmt.Println(sessions)
+	}
+}

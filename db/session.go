@@ -15,7 +15,7 @@ type Message struct {
 type Session struct {
 	Members    []User
 	Messages []Message
-	Identifier int
+	Identifier string
 	OwnerId      int
 }
 

@@ -3,6 +3,7 @@ package routes
 import (
 	"fmt"
 	"net/http"
+	"html/template"
 
 	"r/db"
 )
@@ -17,5 +18,7 @@ func ListSessions(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Println(sessions)
-	fmt.Fprintf(w, "%v", sessions)
+
+	t := template.Must(template.ParseFiles("./templates/sessions.html"));
+	t.Execute(w, sessions)
 }
