@@ -24,6 +24,7 @@ func main() {
 	http.HandleFunc("/plogin", routes.PLogin)
 
 	http.HandleFunc("/gsessions", routes.ListSessions)
+	http.HandleFunc("/sjoin/", routes.JoinSession)
 
 	fmt.Println("Server running on :9000")
 	http.ListenAndServe(":9000", nil)
@@ -57,17 +58,17 @@ func initializeSessionDB() {
 		Identifier: "session dos",
 	}
 
-	db.SessSave(u1.Name, s1)
-	db.SessSave(u2.Name, s2)
+	db.SessSave(s1.Identifier, s1)
+	db.SessSave(s2.Identifier, s2)
 
-	s, ok := db.SessRetrieve(u1.Name)
+	s, ok := db.SessRetrieve(s1.Identifier)
 	if !ok {
 		fmt.Println("No such session")
 	} else {
 		fmt.Println(s)
 	}
 
-	sessions, ok := db.SessRetrieve(u1.Name)
+	sessions, ok := db.SessRetrieve(s2.Identifier)
 	if !ok {
 		fmt.Println("No such session")
 	} else {

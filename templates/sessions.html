@@ -12,7 +12,10 @@
     </form>
     <div>    
     {{ range $session := . }}
-        <p>{{ $session.Identifier }}</p>
+        <p>Session {{ $session.Identifier }}</p>
+        <div>
+            <a href="/sjoin/{{$session.Identifier}}">{{ $session.Identifier }}</a>
+        </div>
     {{ end }}
     </div>
     
