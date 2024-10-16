@@ -6,15 +6,15 @@
     <title>Session | Chat</title>
 </head>
 <body>
-    <h1>Welcome to the Chat Room</h1>
-    <p>You are currently logged in as: {{ .User.Username }}</p>
+    <h1>Session, {{ .Identifier }}.</h1>
+    <p>You are currently logged in as: {{ .OwnerId }}</p>
     <form method="POST" action="/logout">
         <input type="submit" value="Logout">
     </form>
     
     <h2>Recent Messages:</h2>
-    {{ range $_, $msg :=.Messages }}
-        <p>{{ $msg.Username }}: {{ $msg.Message }}</p>
+    {{ range $msg := .Messages }}
+        {{ $msg.MemberId }} ": " {{ $msg.Content }}
     {{ end }}
     
     <form method="POST" action="/send">
