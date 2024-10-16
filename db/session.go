@@ -89,3 +89,20 @@ func SessList() ([]Session, bool) {
 	}
 	return sessions, true
 }
+
+func SessDelete(keys []string) {
+	db, err := buntdb.Open(SESSIONDB)
+	if err != nil {
+		log.Print(err)
+	}
+	defer db.Close()
+	
+	err = db.View(func(tx *buntdb.Tx) error {
+		for _, k := range keys {
+			if _, err = tx.Delete(k); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+}
